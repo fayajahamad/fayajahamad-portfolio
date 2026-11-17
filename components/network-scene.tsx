@@ -1,56 +1,74 @@
 "use client";
 
 import { useState } from "react";
-import { Activity, CheckCheck, Fingerprint, LockKeyhole, Server } from "lucide-react";
+import { Activity, ArrowRight, Check, CircleX, Fingerprint, LockKeyhole, Server, ShieldCheck } from "lucide-react";
 
-type NodeId = "identity" | "gateway" | "service" | "telemetry";
-const nodes: Record<NodeId, { title: string; detail: string; status: string }> = {
-  identity: { title: "Identity provider", detail: "MFA-backed authentication", status: "IDENTITY VERIFIED" },
-  gateway: { title: "Policy gateway", detail: "Least-privilege access", status: "POLICY ENFORCED" },
-  service: { title: "Protected service", detail: "Internal resource boundary", status: "RESOURCE ISOLATED" },
-  telemetry: { title: "Observability", detail: "Log-driven visibility", status: "SIGNALS COLLECTED" },
-};
-const point: Record<NodeId, { x: number; y: number }> = {
-  identity: { x: 132, y: 152 }, gateway: { x: 302, y: 235 }, service: { x: 458, y: 132 }, telemetry: { x: 383, y: 362 }
+type Scenario = "employee" | "contractor";
+type Stage = "identity" | "policy" | "resource";
+
+const stages: Array<{ id: Stage; number: string; title: string; subtitle: string; icon: typeof Fingerprint }> = [
+  { id: "identity", number: "01", title: "Identity", subtitle: "Keycloak", icon: Fingerprint },
+  { id: "policy", number: "02", title: "Policy gateway", subtitle: "Pomerium", icon: LockKeyhole },
+  { id: "resource", number: "03", title: "Private resource", subtitle: "HR application", icon: Server },
+];
+
+const outcomes: Record<Scenario, Record<Stage, { headline: string; description: string }>> = {
+  employee: {
+    identity: { headline: "Identity verified", description: "The HR test user authenticates through Keycloak with multi-factor authentication." },
+    policy: { headline: "Access policy matched", description: "Pomerium evaluates the authenticated user's access to the protected resource." },
+    resource: { headline: "Application available", description: "The HR test account reaches the protected HR portal after successful authentication." },
+  },
+  contractor: {
+    identity: { headline: "Authenticated ≠ authorized", description: "The contractor test account can authenticate, but its identity does not imply HR access." },
+    policy: { headline: "Access denied · HTTP 403", description: "The gateway rejects access based on the application authorization policy." },
+    resource: { headline: "Application remains isolated", description: "The contractor is not permitted to reach the protected HR resource." },
+  },
 };
 
 export function NetworkScene() {
-  const [selected, setSelected] = useState<NodeId>("gateway");
-  return <div className="network-card" aria-label="Interactive illustration of a zero-trust architecture, not live system telemetry">
-    <div className="network-card-top"><span><span className="signal-dot"/> ARCHITECTURE VISUALIZER</span><span>LAB / 001 <span className="tiny-sep">+</span></span></div>
-    <div className="network-viewport">
-      <div className="scene-grid"/>
-      <svg viewBox="0 0 595 475" className="topology-svg" role="img" aria-label="Connections between identity, access gateway, protected service and monitoring">
-        <defs>
-          <linearGradient id="linegrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#4f6258"/><stop offset="100%" stopColor="#7bfaad" /></linearGradient>
-          <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        </defs>
-        <circle cx="300" cy="233" r="191" stroke="#26362f" strokeDasharray="3 10" fill="none"/>
-        <circle cx="300" cy="233" r="129" stroke="#22342d" fill="none"/>
-        <circle cx="300" cy="233" r="67" stroke="#21372c" fill="none"/>
-        <path d="M132 152 L302 235 L458 132 M302 235 L383 362" stroke="#6d8e7a" strokeWidth="1.7" strokeDasharray="4 7" fill="none"/>
-        <path d="M132 152 L302 235 L458 132" stroke="url(#linegrad)" strokeWidth="2.2" fill="none" strokeDasharray="8 240" className="moving-link"/>
-        <path d="M302 235 L383 362" stroke="#7bfaad" strokeWidth="2" fill="none" strokeDasharray="6 150" className="moving-link delay"/>
-        {Object.entries(point).map(([id, p]) => {
-          const active = selected === id;
-          return <g key={id} className="svg-node" onClick={() => setSelected(id as NodeId)} tabIndex={0} role="button" aria-label={`Select ${nodes[id as NodeId].title}`} onKeyDown={(e) => {if (e.key === "Enter" || e.key === " ") {e.preventDefault(); setSelected(id as NodeId);}}}>
-            {active && <circle cx={p.x} cy={p.y} r="32" stroke="#a8f49a" strokeWidth="1" strokeDasharray="3 5" fill="none" className="ring-pulse"/>}
-            <circle cx={p.x} cy={p.y} r="23" fill={active ? "#233d2d" : "#17231e"} stroke={active ? "#befc9e" : "#577060"} strokeWidth={active ? "2" : "1"}/>
-            <circle cx={p.x} cy={p.y} r="5" fill={active ? "#c4ff9b" : "#89b69a"} filter={active ? "url(#glow)" : undefined}/>
-          </g>;
+  const [scenario, setScenario] = useState<Scenario>("employee");
+  const [activeStage, setActiveStage] = useState<Stage>("policy");
+  const blocked = scenario === "contractor";
+  const result = outcomes[scenario][activeStage];
+
+  return <section className="atlas-demo" aria-label="Interactive Zero Trust access-control lab illustration">
+    <div className="atlas-demo-head">
+      <div><span className="atlas-demo-pip"/><span className="atlas-demo-heading">ZERO TRUST / ACCESS FLOW</span></div>
+      <span className="atlas-demo-version">INTERACTIVE LAB MODEL · 001</span>
+    </div>
+
+    <div className="atlas-demo-body">
+      <div className="atlas-demo-context">
+        <div><span className="atlas-micro-label">CHOOSE A TEST SCENARIO</span><strong>What happens at the gateway?</strong></div>
+        <div className="atlas-scenario-tabs" role="group" aria-label="Select access-control test scenario">
+          <button type="button" className={scenario === "employee" ? "is-active" : ""} onClick={() => { setScenario("employee"); setActiveStage("policy"); }} aria-pressed={scenario === "employee"}>HR employee</button>
+          <button type="button" className={scenario === "contractor" ? "is-active" : ""} onClick={() => { setScenario("contractor"); setActiveStage("policy"); }} aria-pressed={scenario === "contractor"}>Contractor</button>
+        </div>
+      </div>
+
+      <div className={`atlas-flow-map ${blocked ? "atlas-is-denied" : "atlas-is-allowed"}`}>
+        <div className="atlas-flow-trail" aria-hidden="true" />
+        {stages.map((stage, index) => {
+          const Icon = stage.icon;
+          return <div className="atlas-flow-item" key={stage.id}>
+            <button type="button" className={`atlas-flow-node ${activeStage === stage.id ? "is-selected" : ""} ${blocked && stage.id === "resource" ? "is-blocked" : ""}`} onClick={() => setActiveStage(stage.id)} aria-pressed={activeStage === stage.id} aria-label={`Inspect ${stage.title}`}>
+              <span className="atlas-node-top"><span>{stage.number} /</span><Icon size={19} strokeWidth={1.7}/></span>
+              <strong>{stage.title}</strong>
+              <small>{stage.subtitle}</small>
+            </button>
+            {index !== stages.length - 1 && <span className="atlas-flow-arrow" aria-hidden="true"><ArrowRight size={18}/></span>}
+          </div>;
         })}
-        <g fontSize="11" fill="#a5b6aa" fontFamily="monospace" letterSpacing="1.2">
-          <text x="70" y="108">01 / IDENTITY</text><text x="262" y="190">02 / GATEWAY</text><text x="424" y="87">03 / APP</text><text x="415" y="395">04 / LOGS</text>
-        </g>
-        <path d="M30 28 h28 M30 28 v28 M565 28 h-28 M565 28 v28 M30 447 h28 M30 447 v-28 M565 447 h-28 M565 447 v-28" fill="none" stroke="#506a5b" strokeWidth="1.5"/>
-      </svg>
-      <div className="topology-stamp"><span>ZERO_TRUST_TOPOLOGY</span><span>SECURE BY DESIGN / v1</span></div>
+      </div>
+
+      <div className="atlas-demo-observe"><Activity size={14}/><span>OBSERVABILITY LAYER</span><span className="atlas-demo-observe-line"/><span>Grafana + Loki</span></div>
+
+      <div className={`atlas-result ${blocked ? "atlas-result-denied" : "atlas-result-allowed"}`} aria-live="polite">
+        <span className="atlas-result-icon">{blocked ? <CircleX size={19}/> : <ShieldCheck size={19}/>}</span>
+        <div><span className="atlas-micro-label">{blocked ? "DENY PATH" : "ALLOW PATH"} · {activeStage.toUpperCase()}</span><strong>{result.headline}</strong><p>{result.description}</p></div>
+        <span className="atlas-result-badge">{blocked ? "403 / DENIED" : <><Check size={12}/> ALLOWED</>}</span>
+      </div>
     </div>
-    <div className="network-inspector">
-      <div className="inspector-icon">{selected === "identity" ? <Fingerprint size={18}/> : selected === "gateway" ? <LockKeyhole size={18}/> : selected === "service" ? <Server size={18}/> : <Activity size={18}/>}</div>
-      <div className="inspector-copy"><strong>{nodes[selected].title}</strong><span>{nodes[selected].detail}</span></div>
-      <div className="inspector-status"><CheckCheck size={13}/>{nodes[selected].status}</div>
-    </div>
-    <div className="network-card-bottom"><span>● SELECT A NODE TO EXPLORE</span><span>ILLUSTRATIVE / NOT LIVE</span></div>
-  </div>;
+    <div className="atlas-demo-foot"><span>Based on controlled project tests</span><span>Illustration — not live telemetry</span></div>
+  </section>;
 }

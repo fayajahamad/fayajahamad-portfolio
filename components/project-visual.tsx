@@ -1,16 +1,29 @@
-import { Activity, Eye, Fingerprint, GitBranch, LockKeyhole, RadioTower, ServerCog, ShieldCheck } from "lucide-react";
+import { Activity, ArrowRight, Fingerprint, LockKeyhole, Radio, Server, Shield, Wifi } from "lucide-react";
 import type { Project } from "@/lib/projects";
 
 export function ProjectVisual({ project }: {project: Project}) {
-  const shape = project.slug === "zero-trust-enterprise" ? "identity" : project.slug === "enterprise-noc-stack" ? "monitor" : project.slug === "pfsense-snort-lab" ? "firewall" : "terminal";
-  return <div className={`project-art art-${project.accent}`} aria-label={`Illustrative visualization for ${project.title}`}>
-    <div className="art-top"><span>F/A — ENGINEERING LAB</span><span>SYS/{project.number}</span></div>
-    {shape === "identity" && <div className="art-identity">
-      <div className="art-tiny-node"><Fingerprint size={26}/><span>IDENTITY</span></div><div className="art-connector"/><div className="art-center-node"><LockKeyhole size={31}/><span>ACCESS PROXY</span></div><div className="art-connector"/><div className="art-tiny-node"><ServerCog size={26}/><span>RESOURCE</span></div>
+  const kind = project.slug === "zero-trust-enterprise" ? "identity" : project.slug === "enterprise-noc-stack" ? "monitor" : project.slug === "pfsense-snort-lab" ? "firewall" : "terminal";
+  return <div className={`atlas-project-visual atlas-pv-${kind}`} aria-label={`Design illustration for ${project.title}; not a real screenshot`}>
+    <div className="atlas-pv-top"><span><i/> ENGINEERING / {project.category.toUpperCase()}</span><span>FIG. {project.number}</span></div>
+    {kind === "identity" && <div className="atlas-pv-identity">
+      <div className="atlas-pv-tile"><Fingerprint size={24}/><strong>Keycloak</strong><small>IDENTITY</small></div>
+      <ArrowRight size={19}/>
+      <div className="atlas-pv-tile atlas-pv-tile-main"><LockKeyhole size={24}/><strong>Pomerium</strong><small>POLICY</small></div>
+      <ArrowRight size={19}/>
+      <div className="atlas-pv-tile"><Server size={24}/><strong>HR portal</strong><small>RESOURCE</small></div>
     </div>}
-    {shape === "monitor" && <div className="art-monitor"><div className="art-dashboard-top"><span><span className="little-light"/>SYSTEM HEALTH</span><span>OBSERVABILITY</span></div><div className="art-bars">{[35,60,44,73,52,79,62,92,57,75,43,80,67,95,55,83,64,90,78,68].map((n,i) => <i key={i} style={{height:`${n}%`}}/>)}</div><div className="art-dashboard-bottom"><span><Activity size={15}/> Monitoring signals</span><span>● ● ●</span></div></div>}
-    {shape === "firewall" && <div className="art-firewall"><span className="art-path art-path-a"/><span className="art-path art-path-b"/><div className="firewall-emblem"><ShieldCheck size={64} strokeWidth={1.3}/></div><span className="art-block art-block-left"><GitBranch size={15}/> INGRESS</span><span className="art-block art-block-right"><Eye size={15}/> INSPECT</span></div>}
-    {shape === "terminal" && <div className="art-terminal"><div className="art-terminal-header"><span>● ● ●</span><span>network-health.py</span></div><p><span className="terminal-prompt">$</span> python monitor.py</p><p><span className="term-success">✓</span> ICMP / target reachable</p><p><span className="term-success">✓</span> Latency signal captured</p><p><span className="terminal-prompt">→</span> Watching for state changes<span className="blinking">_</span></p></div>}
-    <div className="art-bottom"><span>RESEARCH / BUILD / VERIFY</span><RadioTower size={14}/></div>
+    {kind === "monitor" && <div className="atlas-pv-dashboard">
+      <div className="atlas-pv-chart-top"><span><Activity size={16}/> Infrastructure signals</span><span>OBSERVABILITY</span></div>
+      <svg viewBox="0 0 540 125" preserveAspectRatio="none" role="img" aria-label="Illustrative monitoring signal chart">
+        <defs><linearGradient id="pvchart" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#70bfff" stopOpacity=".24"/><stop offset="1" stopColor="#70bfff" stopOpacity="0"/></linearGradient></defs>
+        {[15,45,75,105].map(y => <line key={y} x1="0" y1={y} x2="540" y2={y} stroke="#415777" strokeOpacity=".35"/>)}
+        <path d="M0 94 L36 90 L66 82 L93 87 L125 56 L158 62 L190 48 L222 71 L257 54 L291 63 L325 37 L362 49 L391 27 L429 48 L463 32 L496 46 L540 24 L540 125 L0 125Z" fill="url(#pvchart)"/>
+        <path d="M0 94 L36 90 L66 82 L93 87 L125 56 L158 62 L190 48 L222 71 L257 54 L291 63 L325 37 L362 49 L391 27 L429 48 L463 32 L496 46 L540 24" fill="none" stroke="#7bc7ff" strokeWidth="2.2" vectorEffect="non-scaling-stroke"/>
+      </svg>
+      <div className="atlas-pv-chart-bottom"><span><i/> Reachability</span><span><i/> Latency</span><span><i/> Events</span></div>
+    </div>}
+    {kind === "firewall" && <div className="atlas-pv-policy"><div className="atlas-pv-policy-head"><Shield size={16}/> FIREWALL POLICY MATRIX <small>ILLUSTRATIVE</small></div><div><span>LAN → WAN</span><strong>ALLOW</strong></div><div><span>UNTRUSTED → ADMIN</span><strong className="blocked">DENY</strong></div><div><span>INBOUND → INSPECTION</span><strong>MONITOR</strong></div></div>}
+    {kind === "terminal" && <div className="atlas-pv-terminal"><div><span className="atlas-terminal-dot"/><span className="atlas-terminal-dot"/><span className="atlas-terminal-dot"/><small>network-monitor.py</small></div><p><span>$</span> python monitor.py</p><p><Wifi size={13}/> ICMP reachability checks</p><p><Radio size={13}/> Latency observations</p><p><span>›</span> Recording signal changes<span className="atlas-cursor">_</span></p></div>}
+    <div className="atlas-pv-bottom"><span>CONCEPTUAL VISUAL · NOT A LIVE CAPTURE</span><span>2026</span></div>
   </div>;
 }

@@ -5,6 +5,7 @@ import { Footer } from "@/components/footer";
 import { CommandPalette } from "@/components/command-palette";
 import { site } from "@/lib/site";
 import "./globals.css";
+import "./premium.css";
 
 const display = Space_Grotesk({ subsets: ["latin"], display: "swap", variable: "--font-display" });
 const mono = DM_Mono({ weight: ["400", "500"], subsets: ["latin"], display: "swap", variable: "--font-mono" });
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: `${site.name} — Network & Security Engineering`, description: site.description },
   robots: { index: true, follow: true },
 };
-export const viewport: Viewport = { themeColor: "#09100e", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#080e19", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="en"><body className={`${display.variable} ${mono.variable}`} id="top">

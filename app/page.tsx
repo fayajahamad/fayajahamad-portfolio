@@ -1,50 +1,75 @@
 import Link from "next/link";
-import { Activity, ArrowDownRight, ArrowRight, ArrowUpRight, ChevronRight, CircleCheck, Crosshair, GitBranch, ShieldCheck } from "lucide-react";
+import { Activity, ArrowDown, ArrowRight, ArrowUpRight, CheckCircle2, CircleDot, ExternalLink, Fingerprint, GitBranch, Layers3, LockKeyhole, ShieldCheck, TerminalSquare } from "lucide-react";
 import { NetworkScene } from "@/components/network-scene";
 import { ProjectGrid } from "@/components/project-grid";
-import { ContactCta } from "@/components/contact-cta";
+import { ProjectVisual } from "@/components/project-visual";
 import { GithubActivity } from "@/components/github-activity";
+import { ContactCta } from "@/components/contact-cta";
 import { Reveal } from "@/components/reveal";
-import { capabilities, site, stack } from "@/lib/site";
+import { site, stack } from "@/lib/site";
+import { projects } from "@/lib/projects";
+
+const focus = [
+  { name: "Identity & access", icon: Fingerprint, detail: "MFA, policy enforcement, least privilege" },
+  { name: "Network security", icon: ShieldCheck, detail: "Segmentation, firewalls, packet analysis" },
+  { name: "Infrastructure visibility", icon: Activity, detail: "Logs, monitoring, incident signals" },
+];
+const methodology = [
+  { num: "01", icon: Layers3, title: "Model the system", description: "Start with architecture, trust boundaries, dependencies and failure scenarios." },
+  { num: "02", icon: TerminalSquare, title: "Build the working lab", description: "Implement the controls with repeatable configuration and realistic access paths." },
+  { num: "03", icon: CheckCircle2, title: "Verify and document", description: "Test expected outcomes, record limitations, and make the work reviewable." },
+];
 
 export default function Home() {
+  const featured = projects[0];
   return <>
-    <section className="hero-section">
-      <div className="hero-orb hero-orb-one"/><div className="hero-orb hero-orb-two"/>
-      <div className="container hero-grid">
-        <div className="hero-copy">
-          <div className="hero-overline"><span className="hero-overline-icon"><Crosshair size={14}/></span> PORTFOLIO / 2026 <span className="hero-overline-divider">—</span> NETWORK & SECURITY ENGINEERING</div>
-          <div className="hero-heading"><span>I engineer</span><span>networks that</span><span className="hero-heading-accent">stay secure<span className="hero-period">.</span></span></div>
-          <p className="hero-description">Hi, I&apos;m <strong>{site.firstName}</strong> — a network engineering student designing identity-first access, observable systems, and resilient infrastructure. I turn security concepts into working labs.</p>
-          <div className="hero-buttons"><Link href="/#work" className="btn btn-primary">Explore my work <ArrowUpRight size={17}/></Link><Link href="/about" className="btn btn-secondary">More about me <ArrowRight size={17}/></Link></div>
-          <div className="hero-social-proof"><div className="availability-indicator"><span className="availability-pulse"/> OPEN TO INTERNSHIP OPPORTUNITIES</div><span className="hero-location">BASED IN {site.location.toUpperCase()}</span></div>
+    <section className="atlas-hero" id="overview">
+      <div className="atlas-hero-aura" aria-hidden="true"/>
+      <div className="container atlas-hero-inner">
+        <div className="atlas-hero-intro"><span className="atlas-section-overline"><span className="atlas-blue-pip"/> NETWORK ENGINEERING & CYBERSECURITY</span><span className="atlas-hero-index">PORTFOLIO · 2026</span></div>
+        <div className="atlas-hero-layout">
+          <div className="atlas-hero-copy">
+            <h1>Engineering the<br/><span>networks we</span><br/><em>depend on.</em></h1>
+            <p className="atlas-hero-lead">I&apos;m <strong>{site.name}</strong>, a third-year Network Engineering student focused on secure enterprise access, network infrastructure and observable systems.</p>
+            <p className="atlas-hero-subline">I build practical labs, test real access decisions and explain the engineering behind them.</p>
+            <div className="atlas-hero-links">
+              <Link className="atlas-button atlas-button-primary" href="#work">Explore selected work <ArrowUpRight size={18}/></Link>
+              <a className="atlas-button atlas-button-quiet" href={site.github} target="_blank" rel="noopener noreferrer"><GitBranch size={17}/> GitHub profile <ExternalLink size={14}/></a>
+            </div>
+            <div className="atlas-hero-location"><span className="atlas-availability-pip"/> Open to internship opportunities <span className="atlas-hero-location-sep"/> {site.location}</div>
+          </div>
+          <div className="atlas-hero-demo"><NetworkScene/></div>
         </div>
-        <div className="hero-visual"><NetworkScene/><span className="hero-visual-caption">FIG 01. / INTERACTIVE SECURITY ARCHITECTURE</span></div>
+        <div className="atlas-hero-floor"><a href="#work">SCROLL TO PROJECTS <ArrowDown size={15}/></a><span>01 / ENGINEERING PORTFOLIO</span></div>
       </div>
-      <div className="container hero-bottom-row"><span>SCROLL TO EXPLORE <ArrowDownRight size={16}/></span><span>DESIGN · SECURE · OBSERVE</span><span>01 / 05</span></div>
     </section>
 
-    <div className="stack-bar" aria-label="Core technologies"><div className="container stack-bar-inner"><span>WORKING WITH</span><div className="stack-tags">{stack.slice(0,8).map(item => <span key={item}>{item}</span>)}</div></div></div>
+    <section className="atlas-focus-strip" aria-label="Engineering focus areas"><div className="container atlas-focus-inner"><span>CORE PRACTICE AREAS</span>{focus.map(({name,icon:Icon})=><div key={name}><Icon size={18}/>{name}</div>)}</div></section>
 
-    <section className="section work-section" id="work"><div className="container">
-      <Reveal><div className="section-heading"><div><span className="section-kicker"><span className="kicker-number">01</span> / SELECTED WORK</span><h2>Proof of <span>practice.</span></h2><p>Not just technologies on a résumé. Projects exploring what happens when identity, infrastructure and security meet.</p></div><Link href="/work" className="section-link">ALL PROJECTS <ArrowUpRight size={18}/></Link></div></Reveal>
-      <ProjectGrid/>
-      <div className="work-end-note"><span><CircleCheck size={15}/> Project claims are documented conservatively; more evidence is added as each lab is validated.</span><Link href="/work">View project index <ArrowRight size={15}/></Link></div>
+    <section className="atlas-section atlas-work" id="work"><div className="container">
+      <Reveal><div className="atlas-section-head"><div><span className="atlas-section-overline">01 / SELECTED PROJECTS</span><h2>Real work. <span>Clear thinking.</span></h2><p>Security engineering is more than the tools in a stack. Here&apos;s how I approach architecture, implementation, validation and documentation.</p></div><Link href="/work" className="atlas-inline-link">View all case studies <ArrowUpRight size={17}/></Link></div></Reveal>
+      <Reveal><Link className="atlas-featured-project" href={`/work/${featured.slug}`} aria-label={`Read the ${featured.title} case study`}>
+        <div className="atlas-featured-copy"><span className="atlas-featured-label"><CircleDot size={13}/> FEATURED / SECURITY ARCHITECTURE</span><div><span className="atlas-featured-number">01 — ZERO TRUST</span><h3>{featured.title}</h3><p>{featured.summary}</p><div className="atlas-featured-proof"><span><CheckCircle2 size={15}/> MFA-backed access tested</span><span><LockKeyhole size={15}/> Allow / deny behavior verified</span></div></div><span className="atlas-featured-action">Explore case study <ArrowUpRight size={17}/></span></div>
+        <div className="atlas-featured-art"><ProjectVisual project={featured}/></div>
+      </Link></Reveal>
+      <div className="atlas-projects-caption"><div><span>MORE ENGINEERING WORK</span><span>FILTER BY DISCIPLINE</span></div></div>
+      <ProjectGrid excludeSlug={featured.slug}/>
     </div></section>
 
-    <section className="section expertise-section" id="expertise"><div className="container">
-      <Reveal><div className="section-heading"><div><span className="section-kicker"><span className="kicker-number">02</span> / WHAT I DO</span><h2>Depth over <span>buzzwords.</span></h2><p>Three areas I&apos;m actively developing through real configurations, troubleshooting and deliberate practice.</p></div></div></Reveal>
-      <div className="capabilities-grid">{capabilities.map((cap, i) => <Reveal delay={i*90} key={cap.num}><article className="capability-card"><div className="capability-icon">{i===0?<ShieldCheck size={23}/>:i===1?<GitBranch size={23}/>:<Activity size={23}/>}</div><span className="capability-number">{cap.num} / 03</span><h3>{cap.title}</h3><p>{cap.description}</p><div className="capability-tags">{cap.tags.map(t=><span key={t}>{t}</span>)}</div></article></Reveal>)}</div>
+    <section className="atlas-section atlas-expertise" id="expertise"><div className="container"><Reveal><div className="atlas-section-head"><div><span className="atlas-section-overline">02 / TECHNICAL PRACTICE</span><h2>Where I focus <span>my effort.</span></h2><p>Applied security thinking backed by lab implementation, troubleshooting and practical network fundamentals.</p></div></div></Reveal>
+      <div className="atlas-expertise-grid">{focus.map(({name,icon:Icon,detail},i)=><Reveal key={name} delay={i*80}><div className="atlas-expertise-card"><div className="atlas-expertise-top"><span>0{i+1} / 03</span><Icon size={22}/></div><h3>{name}</h3><p>{detail}</p><div className="atlas-expertise-rule"/></div></Reveal>)}</div>
+      <div className="atlas-stack-line"><span>TOOLS & TECHNOLOGIES</span><div>{stack.map(item=><span key={item}>{item}</span>)}</div></div>
     </div></section>
 
-    <section className="section philosophy-section"><div className="container philosophy-layout">
-      <Reveal><div className="philosophy-aside"><span className="section-kicker"><span className="kicker-number">03</span> / HOW I THINK</span><div className="philosophy-logo">∴<span>/</span></div><span>ENGINEERING PRINCIPLES</span></div></Reveal>
-      <Reveal delay={100}><div className="philosophy-content"><h2>Security isn&apos;t a feature.<br/><em>It&apos;s a design decision.</em></h2><p>I care about the details between a diagram and a working system: authentication boundaries, failure modes, logs, operational visibility, and the evidence that a control actually works.</p><div className="principle-grid"><div><span>01 /</span><strong>Think in systems</strong><small>See connections, not isolated components.</small></div><div><span>02 /</span><strong>Verify assumptions</strong><small>Test allow paths and deny paths.</small></div><div><span>03 /</span><strong>Document decisions</strong><small>Build work others can understand.</small></div></div><Link href="/about" className="text-link">MORE ABOUT MY APPROACH <ChevronRight size={17}/></Link></div></Reveal>
+    <section className="atlas-section atlas-method" id="approach"><div className="container atlas-method-grid">
+      <Reveal><div className="atlas-method-intro"><span className="atlas-section-overline">03 / ENGINEERING APPROACH</span><h2>Built to be<br/><span>understood.</span><br/>Not just seen.</h2><p>My goal is to create useful, repeatable work with testable outcomes—not just a polished diagram and a list of technologies.</p><Link className="atlas-inline-link" href="/about">More about my approach <ArrowUpRight size={17}/></Link></div></Reveal>
+      <div className="atlas-method-steps">{methodology.map(({num,icon:Icon,title,description},i)=><Reveal key={num} delay={i*65}><div className="atlas-method-step"><span className="atlas-method-number">{num}</span><span className="atlas-method-icon"><Icon size={21}/></span><div><h3>{title}</h3><p>{description}</p></div><ArrowRight className="atlas-method-arrow" size={18}/></div></Reveal>)}</div>
     </div></section>
 
-    <section className="section github-section"><div className="container"><div className="section-heading"><div><span className="section-kicker"><span className="kicker-number">04</span> / OPEN SOURCE WORKFLOW</span><h2>See the <span>actual work.</span></h2><p>Public code and repository history matter more than a fabricated contribution number.</p></div></div><GithubActivity/></div></section>
+    <section className="atlas-section atlas-github" id="github"><div className="container"><div className="atlas-section-head"><div><span className="atlas-section-overline">04 / PUBLIC WORK</span><h2>The repository <span>is the evidence.</span></h2><p>Explore source code, documentation and project progress. Repository information comes from GitHub&apos;s public API.</p></div></div><GithubActivity/></div></section>
 
-    <section className="section notes-preview"><div className="container notes-preview-grid"><div><span className="section-kicker"><span className="kicker-number">05</span> / FIELD NOTES</span><h2>Learning in<br/><span>public.</span></h2></div><div><p>I&apos;m turning lab lessons into short technical write-ups about access policy, firewall controls and network monitoring.</p><Link href="/notes" className="btn btn-secondary">Explore field notes <ArrowUpRight size={16}/></Link></div></div></section>
+    <section className="atlas-writing" id="writing"><div className="container atlas-writing-inner"><div><span className="atlas-section-overline">05 / FIELD NOTES</span><h2>Thinking out loud,<br/><span>learning in public.</span></h2><p>Short write-ups on access control, network troubleshooting, and lessons from building engineering labs.</p></div><Link className="atlas-button atlas-button-quiet" href="/notes">Browse field notes <ArrowUpRight size={17}/></Link></div></section>
+
     <ContactCta/>
   </>;
 }

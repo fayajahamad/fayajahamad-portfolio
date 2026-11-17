@@ -1,11 +1,9 @@
 import Link from "next/link";
-import { ArrowUpRight, MoveUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export function ContactCta() {
-  return <section className="cta-section"><div className="container cta-inner">
-    <div className="eyebrow"><span className="eyebrow-line"/> OPEN TO OPPORTUNITIES / 2026</div>
-    <h2>Let&apos;s build systems<br/><span>that matter.</span></h2>
-    <div className="cta-bottom"><p>Interested in network engineering, infrastructure and security internship opportunities. Let&apos;s connect.</p><Link href="/contact" className="cta-round" aria-label="Go to contact page"><MoveUpRight size={33}/></Link></div>
-    <span className="cta-corner" aria-hidden="true"><ArrowUpRight size={180} strokeWidth={0.6}/></span>
+  return <section className="atlas-contact-section" id="contact-cta"><div className="container atlas-contact-panel">
+    <div><span className="atlas-section-overline"><span className="atlas-blue-pip"/> WHAT&apos;S NEXT</span><h2>Let&apos;s solve something <span>meaningful.</span></h2><p>Exploring internship opportunities in network engineering, infrastructure, and cybersecurity. I&apos;d be glad to connect.</p></div>
+    <Link href="/contact" className="atlas-contact-cta">Start a conversation <ArrowUpRight size={18}/></Link>
   </div></section>;
 }
