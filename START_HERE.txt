@@ -1,0 +1,26 @@
+NEXT.JS PORTFOLIO — SIMPLE WINDOWS POWERHELL STEPS
+
+1. Extract the ZIP, then put the folder "fayaj-engineering-portfolio" on Desktop.
+2. Open a NEW Windows PowerShell window.
+3. Run the following commands one at a time:
+
+cd "$HOME\Desktop\fayaj-engineering-portfolio"
+node --version
+npm.cmd install
+Copy-Item .env.example .env.local
+npm.cmd run dev
+
+4. Open http://localhost:3000 in Chrome.
+5. Edit lib/site.ts and lib/projects.ts to make the content accurate and personal.
+6. Stop the server with Ctrl+C.
+
+If "node" or "npm.cmd" isn't recognized, install Node.js LTS from:
+https://nodejs.org/en/download
+Then CLOSE and reopen PowerShell. Run the commands again.
+
+For GitHub + Vercel deployment see: docs/DEPLOYMENT.md
+For a realistic 1,000+ contribution plan see: docs/CONTRIBUTION_PLAN.md
+
+IMPORTANT: the ZIP contains source code, not installed dependencies or a live
+hosted website. Run npm install first to generate package-lock.json; include
+that lockfile in the initial Git commit for the provided GitHub Actions CI.
