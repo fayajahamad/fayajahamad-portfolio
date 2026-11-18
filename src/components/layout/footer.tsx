@@ -18,7 +18,7 @@ export function Footer() {
             <a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight size={13} aria-hidden="true" /></a>
             {isVerifiedExternalLink(profile.linkedin) && <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={13}/></a>}
           </nav>
-          <span>© {new Date().getFullYear()} {profile.displayName}</span>
+          <span>© {profile.displayName}</span>
         </div>
       </div>
     </footer>
