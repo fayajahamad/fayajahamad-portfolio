@@ -77,7 +77,7 @@ export default function Home() {
 
     <section className="section-shell v4-focus-section">
       <div className="container-wide">
-        <div className="v4-section-head v4-section-head-compact"><div><p className="v4-section-index">03 <span>/</span> WHAT I DO</p><h2>Software thinking.<br/><span>Infrastructure mindset.</span></h2></div><p className="v4-head-note">My interests sit where programming, networking and security meet.</p></div>
+        <div className="v4-section-head v4-section-head-compact"><div><h2>Software thinking.<br/><span>Infrastructure mindset.</span></h2></div></div>
         <div className="v4-focus-grid">{focusAreas.map(item => <article className="v4-focus-card" key={item.number}><div className="v4-focus-top"><span>{item.number} / 03</span><item.icon size={22} strokeWidth={1.7}/></div><h3>{item.name}</h3><p>{item.description}</p><small>{item.detail}</small></article>)}</div>
       </div>
     </section>
