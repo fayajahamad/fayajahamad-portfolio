@@ -45,7 +45,6 @@ export default function Home() {
               </div>
               <div className="v5-photo-footer"><div><span>NETWORK ENGINEERING UNDERGRADUATE</span><strong>Fawsil Ameer Fayaj Ahamad</strong></div></div>
             </div>
-            <div className="v5-photo-annotation"><span className="v5-annotation-line"/> BUILDING WITH PURPOSE <span>↗</span></div>
           </div>
         </div>
       </div>
