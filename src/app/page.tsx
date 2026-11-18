@@ -68,8 +68,8 @@ export default function Home() {
     <section className="section-shell v6-experience-section" id="experience">
       <div className="container-wide">
         <div className="v4-section-head v4-section-head-compact">
-          <div><p className="v4-section-index">02 <span>/</span> BEYOND THE CLASSROOM</p><h2>Real-world experience.<br/><span>Community involvement.</span></h2></div>
-          <div className="v4-section-aside"><p>Part-time work, contract experience and university activities inform how I collaborate and grow.</p><Link href="/experience" className="v4-inline-link">View experience and involvement <ArrowUpRight size={17}/></Link></div>
+          <div><h2>Real-world experience.<br/><span>Community involvement.</span></h2></div>
+          <div className="v4-section-aside"><Link href="/experience" className="v4-inline-link">View experience and involvement <ArrowUpRight size={17}/></Link></div>
         </div>
         <ExperienceHighlights />
       </div>
