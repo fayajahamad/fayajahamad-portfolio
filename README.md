@@ -1,48 +1,61 @@
-> **V5 GOLD DESIGN:** See [DESIGN_V5.md](DESIGN_V5.md). Uploaded portrait: `/public/images/fayaj-professional-portrait.webp`.
+# Fayaj Ahamad — Engineering Portfolio (V6)
 
-# Fayaj Ahamad — Engineering Portfolio V4
+A Next.js / TypeScript portfolio for **Fawsil Ameer Fayaj Ahamad**, a third-year Network Engineering undergraduate at NSBM Green University, Sri Lanka.
 
-Professional Next.js portfolio for **Fawsil Ameer Fayaj Ahamad**, a third-year Network Engineering undergraduate at NSBM Green University, Sri Lanka. Built to show practical network, Python, and security work through case studies rather than invented metrics.
+## Design
 
-## Design direction
+The single-theme visual identity uses the five colors provided by Fayaj:
 
-- Refined midnight navy / slate / cyan visual identity based on colors used in the public GitHub profile (not a pixel-identical copy of any live site)
-- Crisp sans-serif typography, subtle controlled depth, spacious layouts, accessible contrast
-- A concrete Zero Trust system case study in the hero, not decorative "live" cybersecurity metrics
-- Responsive selected-work cards and interactive, **illustrative** authorization explorer
-- Dark mode by default, with a light-mode toggle
+| Color | Hex | Usage |
+| --- | --- | --- |
+| Heritage gold | `#D9B061` | Highlights and featured accents |
+| Champagne | `#D9C4A9` | Borders and light decorative details |
+| Stone | `#D8D0C5` | Soft background and neutral surfaces |
+| Walnut | `#8D6F57` | Supporting type and interaction accents |
+| Burgundy | `#3F0D0C` | Headlines, primary buttons and final CTA |
 
-## Run locally (Windows PowerShell)
+The portfolio opens with a **warm-ivory light design**, retains the supplied professional photograph, and does not have a light/dark toggle. Its interactive Zero Trust example is explicitly illustrative, not live telemetry.
+
+## Pages
+
+- `/` — hero, selected work, experience/activities, focus areas, Zero Trust lab and skills
+- `/projects` and `/projects/[slug]` — projects with detailed case studies
+- `/experience` — contract work, part-time work, campus leadership and club membership
+- `/about`, `/skills`, `/education`, `/contact` — professional profile
+- `/lab` — optional engineering notes page (not in the main navigation)
+
+## Run locally
 
 ```powershell
-cd "$HOME\Desktop\fayajahamad-portfolio-v4\fayajahamad-portfolio"
 npm.cmd install
 npm.cmd run check
 npm.cmd run build
 npm.cmd run dev
 ```
 
-Visit `http://localhost:3000` with `npm run dev` still running.
+Open `http://localhost:3000` while the dev server remains running. Use Node.js 20.9 or newer.
 
-## Edit content
+## Edit the content
 
-- `src/data/profile.ts` — legal and display name, LinkedIn, email, university, introduction
-- `src/data/projects.ts` — central typed project records; add verified evidence only
+- `src/data/profile.ts` — identity, university, social/contact links
+- `src/data/experience.ts` — employment dates and student involvement
+- `src/data/projects.ts` — descriptions and links for documented projects
 - `src/app/page.tsx` — homepage sections
-- `src/app/globals.css` — layout/design system and V4 overrides
-- `src/components/projects/project-visual.tsx` — illustrative project card graphics (not real screenshots)
-- `public/documents/` — add a CV only if you have a real one to publish
+- `src/app/globals.css` — the design system; V6 single-theme overrides are near the bottom
+- `public/images/fayaj-professional-portrait.webp` — user-supplied portrait
+- `src/app/experience/page.tsx` — dedicated experience page
 
-The GitHub and LinkedIn/email URLs come from the user's public GitHub profile and should be confirmed before deployment. Project repo URLs are populated only for repos observed in the linked GitHub account; the Password Checker remains without a repository link until verified.
+Work dates and activities are transcribed from user-provided information. **No duties, outcomes, employers' references, certificates or project performance figures were invented.** Please review the dates of the contract role before publication because the separately stated “three months” and the listed November–February range could be interpreted differently.
 
-## Before GitHub deployment
+## Before publishing
 
-- Check `npm.cmd run check` (ESLint + TypeScript + tests) and `npm.cmd run build`
-- Verify responsive mobile and keyboard navigation
-- Review all project descriptions for accuracy; replace illustrative diagrams with sanitized actual screenshots when available
-- Verify public contact links and set `NEXT_PUBLIC_SITE_URL` to the real Vercel URL
-- Never commit `.env.local`, credentials, private IP ranges exposing real systems, or MFA recovery codes
+- Complete `npm.cmd run check` and `npm.cmd run build` successfully.
+- Test the homepage, project details, experience, and contact pages on desktop and mobile.
+- Verify work dates, professional email, LinkedIn and public GitHub links.
+- Run `npm.cmd audit --omit=dev` and review full development dependency findings.
+- Avoid committing `.env.local`, secrets, `node_modules`, `.next`, or private lab data.
+- Set `NEXT_PUBLIC_SITE_URL` to the real deployment URL before launch.
 
-## Note on the reference website
+## GitHub updates
 
-The previous live portfolio at `my-portfolio-ruby-sigma-45hja9i8df.vercel.app` was not reachable through the available website inspection tool, so this project is a fresh design direction using the user's verified portfolio identity and requested style, **not a verified exact recreation**. A screenshot or original source would allow closer matching in a subsequent revision.
+Apply the V6 update files to your existing **cloned** `fayajahamad-portfolio` repo and commit normally. Do **not** run `git init`, overwrite `.git`, or force-push. One meaningful improvement generally becomes one commit, not a contribution per modified file.

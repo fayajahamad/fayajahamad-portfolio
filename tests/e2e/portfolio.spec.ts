@@ -1,13 +1,15 @@
 import { test, expect } from "@playwright/test";
 
-test("home navigation and theme toggle", async ({ page }) => {
+test("homepage and experience navigation", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Engineering networks");
-  const theme = page.getByRole("button", { name: "Toggle between light and dark theme" });
-  await theme.click();
-  await expect(page.locator("html")).toHaveClass(/dark/);
-  await page.getByRole("link", { name: "Explore my work" }).click();
-  await expect(page).toHaveURL(/\/projects$/);
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Engineering");
+  await expect(page.getByRole("link", { name: /Explore my projects/ })).toBeVisible();
+  await expect(page.getByRole("button", { name: /Toggle between light and dark/ })).toHaveCount(0);
+  await page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", { name: "Experience" }).click();
+  await expect(page).toHaveURL(/\/experience$/);
+  await expect(page.getByText("Medifit Pharmacy")).toBeVisible();
+  await expect(page.getByText("We Are Team Rocket")).toBeVisible();
+  await expect(page.getByText("NSBM NForce Club")).toBeVisible();
 });
 
 test("projects and case study pages load", async ({ page }) => {
@@ -24,4 +26,5 @@ test("mobile menu exposes navigation", async ({ page, isMobile }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Open menu" }).click();
   await expect(page.getByRole("navigation", { name: "Mobile navigation" })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Mobile navigation" }).getByRole("link", {name: "Experience"})).toBeVisible();
 });

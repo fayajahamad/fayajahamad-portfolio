@@ -3,14 +3,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
+  { href: "/experience", label: "Experience" },
   { href: "/skills", label: "Skills" },
-  { href: "/lab", label: "Lab Notes" },
   { href: "/education", label: "Education" },
 ];
 
@@ -28,7 +27,6 @@ export function Header() {
         {links.map(link=><Link key={link.href} href={link.href} className={`nav-link ${active(link.href)?"active":""}`} aria-current={active(link.href)?"page":undefined}>{link.label}</Link>)}
       </nav>
       <div className="header-actions">
-        <ThemeToggle />
         <Link href="/contact" className="header-contact">Let&apos;s talk <ArrowUpRight size={15}/></Link>
         <button className="mobile-menu-button icon-control" type="button" aria-label={menuOpen?"Close menu":"Open menu"} aria-expanded={menuOpen} aria-controls="mobile-nav" onClick={()=>setMenuOpen(v=>!v)}>{menuOpen?<X size={20}/>:<Menu size={20}/>}</button>
       </div>

@@ -2,7 +2,7 @@
 
 ## Identity and credibility
 - [ ] Confirm full name, university, year and role.
-- [ ] Add a genuine professional photograph **only** if you want one; the placeholder is not a stock photo.
+- [ ] Confirm that the user-supplied professional photograph is appropriate for publication.
 - [ ] Provide verified LinkedIn URL, professional email, and optional real CV.
 - [ ] Make sure all project titles and descriptions match work actually performed.
 - [ ] Replace concept images with sanitized screenshots where available, keeping evidence captions accurate.

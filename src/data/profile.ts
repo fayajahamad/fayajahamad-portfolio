@@ -3,7 +3,7 @@ export const profile = {
   fullName: "Fawsil Ameer Fayaj Ahamad",
   displayName: "Fayaj Ahamad",
   shortName: "Fayaj",
-  role: "Network Engineering Undergraduate | Python Developer | Network & Security Automation",
+  role: "Network Engineering Undergraduate | Network & Security Automation",
   location: "Sri Lanka",
   university: "NSBM Green University",
   academicYear: "Third-year undergraduate",

@@ -1,17 +1,16 @@
 import type { Metadata, Viewport } from "next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { ThemeProvider } from "@/components/theme/theme-provider";
 import { profile } from "@/data/profile";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#3F0D0C" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#FAF7F2" };
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
   title: { default: `${profile.displayName} | Software, Networks & Security`, template: `%s | ${profile.displayName}` },
-  description: `Portfolio of ${profile.fullName}, a third-year Network Engineering undergraduate at NSBM Green University exploring Python, software and network security.`,
+  description: `Portfolio of ${profile.fullName}, a third-year Network Engineering undergraduate at NSBM Green University with projects in networks, security and automation.`,
   applicationName: "Fayaj Ahamad Portfolio",
   authors: [{ name: profile.fullName }],
   alternates: { canonical: "/" },
@@ -31,14 +30,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     description: profile.role,
   };
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body>
-        <ThemeProvider>
           <a className="skip-link" href="#main">Skip to main content</a>
           <Header />
           <main id="main">{children}</main>
           <Footer />
-        </ThemeProvider>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
       </body>
     </html>

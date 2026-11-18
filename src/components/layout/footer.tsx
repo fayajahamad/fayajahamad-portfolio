@@ -13,7 +13,7 @@ export function Footer() {
         </div>
         <div className="footer-right">
           <nav aria-label="Footer navigation" className="footer-links">
-            <Link href="/projects">Projects</Link><Link href="/lab">Engineering lab</Link>
+            <Link href="/projects">Projects</Link><Link href="/experience">Experience</Link>
             <Link href="/contact">Contact</Link>
             <a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight size={13} aria-hidden="true" /></a>
             {isVerifiedExternalLink(profile.linkedin) && <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={13}/></a>}
