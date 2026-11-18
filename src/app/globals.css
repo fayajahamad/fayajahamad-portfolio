@@ -1193,3 +1193,8 @@ body{font-size:15px}
 .featured-project-grid .project-status-line {
     justify-content: flex-start;
 }
+
+/* Hide numbering in the three focus-area cards */
+.v4-focus-top > span:first-child {
+    display: none;
+}
