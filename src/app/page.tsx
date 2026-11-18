@@ -58,8 +58,8 @@ export default function Home() {
     <section className="section-shell v4-selected-work" id="selected-work">
       <div className="container-wide">
         <div className="v4-section-head">
-          <div><p className="v4-section-index">01 <span>/</span> SELECTED PROJECTS</p><h2>Work that speaks<br/><span>through the details.</span></h2></div>
-          <div className="v4-section-aside"><p>A closer look at real lab work, implementation choices and the problems behind each build.</p><Link href="/projects" className="v4-inline-link">View all projects <ArrowUpRight size={17}/></Link></div>
+          <div><h2>Work that speaks<br/><span>through the details.</span></h2></div>
+          <div className="v4-section-aside"><Link href="/projects" className="v4-inline-link">View all projects <ArrowUpRight size={17}/></Link></div>
         </div>
         <div className="project-grid featured-project-grid">{featuredProjects.map(project => <ProjectCard key={project.slug} project={project}/>)}</div>
       </div>
