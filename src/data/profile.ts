@@ -18,6 +18,6 @@ export const profile = {
     "I enjoy exploring how software and networking technologies work together to solve real-world problems. My learning journey involves developing practical applications, configuring network environments, experimenting with security technologies, and continuously improving my programming skills.",
     "I have worked on practical projects involving Python-based network monitoring, password strength analysis, VoIP infrastructure using Asterisk, and firewall and network security configurations using pfSense.",
     "I believe in learning through building. Rather than limiting myself to theoretical knowledge, I focus on hands-on projects, technical experimentation, problem-solving, and documenting what I develop.",
-    "I possess fundamental knowledge of Amazon Web Services (AWS) and am continuing to develop my understanding of cloud infrastructure.",
+    "I possess fundamental knowledge of Amazon Web Services (AWS) and I am continuing to develop my understanding of cloud infrastructure in future.",
   ] as readonly string[],
 } as const;
