@@ -1,0 +1,4 @@
+import type { Metadata } from "next";
+import { ProjectExplorer } from "@/components/projects/project-explorer";
+export const metadata: Metadata = { title: "Projects", description: "Case studies covering Python, software, VoIP, firewalls and identity-aware security." };
+export default function ProjectsPage(){return <><section className="page-intro container-wide"><span className="eyebrow"><span className="eyebrow-dot"/>WORK / 02</span><h1>Selected work.<br/><span>Real engineering questions.</span></h1><p>Every project is an opportunity to turn an idea into a working experiment, examine the trade-offs and document the outcome.</p></section><section className="section-shell bordered-top"><div className="container-wide"><ProjectExplorer/></div></section></>}

@@ -1,78 +1,48 @@
-# Fayaj Engineering — Next.js Portfolio
+> **V5 GOLD DESIGN:** See [DESIGN_V5.md](DESIGN_V5.md). Uploaded portrait: `/public/images/fayaj-professional-portrait.webp`.
 
-A responsive, accessible network engineering and cybersecurity portfolio built with the Next.js App Router, TypeScript and custom CSS. Includes an interactive, explicitly illustrative Zero Trust topology, filterable technical project cards, in-depth case studies, field notes, public GitHub repository integration, accessible mobile navigation, security headers, SEO files and automated quality checks.
+# Fayaj Ahamad — Engineering Portfolio V4
 
-**This is a real source-code starter, not a screenshot or an imitation of another person's website.** All example project claims are intentionally conservative. Before publishing, review and update the personal information, real repository links and lab evidence.
+Professional Next.js portfolio for **Fawsil Ameer Fayaj Ahamad**, a third-year Network Engineering undergraduate at NSBM Green University, Sri Lanka. Built to show practical network, Python, and security work through case studies rather than invented metrics.
 
-## Features
+## Design direction
 
-- Responsive premium dark interface with lime-green accent and custom architectural graphics
-- Interactive topology: selectable identity provider, access gateway, protected service, observability node
-- Project listing, filters, four full case-study routes, and linked source repositories
-- GitHub REST API integration through `/api/github` (public repository metadata, no secrets required)
-- About page, practical field notes, contact page with real channel links only
-- `sitemap.xml`, `robots.txt`, Open Graph metadata and an SVG favicon
-- Motion respects `prefers-reduced-motion`; keyboard navigation and a skip link
-- GitHub Actions CI, tests, linting, TypeScript checking and Dependabot
-- No invented contribution counter, metrics, lab screenshots or contact details
+- Refined midnight navy / slate / cyan visual identity based on colors used in the public GitHub profile (not a pixel-identical copy of any live site)
+- Crisp sans-serif typography, subtle controlled depth, spacious layouts, accessible contrast
+- A concrete Zero Trust system case study in the hero, not decorative "live" cybersecurity metrics
+- Responsive selected-work cards and interactive, **illustrative** authorization explorer
+- Dark mode by default, with a light-mode toggle
 
-## Requirements
-
-- Node.js **20.9+** (Node.js LTS is recommended)
-- npm
-- Internet for the initial `npm install` and for the Google fonts downloaded by Next.js at build time
-
-## Quick start (Windows PowerShell)
+## Run locally (Windows PowerShell)
 
 ```powershell
-# Extract the ZIP to Desktop, then run:
-cd "$HOME\Desktop\fayaj-engineering-portfolio"
-node --version
+cd "$HOME\Desktop\fayajahamad-portfolio-v4\fayajahamad-portfolio"
 npm.cmd install
-Copy-Item .env.example .env.local
+npm.cmd run check
+npm.cmd run build
 npm.cmd run dev
 ```
 
-Open http://localhost:3000. Keep the PowerShell window running. Stop with Ctrl+C.
+Visit `http://localhost:3000` with `npm run dev` still running.
 
-**Important:** If `node` or `npm.cmd` is not recognized, install the **LTS version of Node.js** from https://nodejs.org/en/download, then close and reopen PowerShell and rerun `node --version`. For a clean initial install, you can keep the default installer settings.
+## Edit content
 
-## Personalize before publishing
+- `src/data/profile.ts` — legal and display name, LinkedIn, email, university, introduction
+- `src/data/projects.ts` — central typed project records; add verified evidence only
+- `src/app/page.tsx` — homepage sections
+- `src/app/globals.css` — layout/design system and V4 overrides
+- `src/components/projects/project-visual.tsx` — illustrative project card graphics (not real screenshots)
+- `public/documents/` — add a CV only if you have a real one to publish
 
-1. `lib/site.ts`: verify your display name and edit `email`, `linkedin`, your degree, preferred title and `cv` link. Missing contact channels are hidden automatically.
-2. `lib/projects.ts`: verify each statement against your actual labs, add real screenshots and public GitHub links **only once checked for secrets**. Keep accurate statuses.
-3. `lib/notes.ts`: edit the example educational field notes, add write-ups you have actually worked on.
-4. `NEXT_PUBLIC_SITE_URL` in Vercel environment variables: set the final `https://your-domain.vercel.app` URL for canonical metadata and sitemap. `GITHUB_USERNAME` defaults to `fayajahamad`.
-5. If you add a CV, save it as `public/resume.pdf` and update `site.cv`. Never put your personal address, ID, passwords or MFA secrets in a repository.
+The GitHub and LinkedIn/email URLs come from the user's public GitHub profile and should be confirmed before deployment. Project repo URLs are populated only for repos observed in the linked GitHub account; the Password Checker remains without a repository link until verified.
 
-## Quality checks
+## Before GitHub deployment
 
-```powershell
-npm.cmd run check
-npm.cmd run build
-```
+- Check `npm.cmd run check` (ESLint + TypeScript + tests) and `npm.cmd run build`
+- Verify responsive mobile and keyboard navigation
+- Review all project descriptions for accuracy; replace illustrative diagrams with sanitized actual screenshots when available
+- Verify public contact links and set `NEXT_PUBLIC_SITE_URL` to the real Vercel URL
+- Never commit `.env.local`, credentials, private IP ranges exposing real systems, or MFA recovery codes
 
-The supplied GitHub workflow uses `npm ci`: after your first `npm.cmd install`, **commit the generated `package-lock.json`**. This project ZIP does not include a lockfile because package installation could not be performed in the artifact-building environment.
+## Note on the reference website
 
-## Deploy
-
-1. Create a new public GitHub repository such as `fayaj-engineering-portfolio`.
-2. Push the project files, including `package-lock.json` (see `docs/DEPLOYMENT.md`).
-3. In Vercel, select **Add New → Project → Import Git Repository**, choose the new repo and deploy.
-4. Set `NEXT_PUBLIC_SITE_URL` to your actual Vercel domain, then redeploy.
-5. Test all URLs and mobile behavior, and verify the GitHub cards load.
-
-## Important notes
-
-- The architecture diagrams in this project are **illustrative**. They must not be labeled as screenshots of your operating environments.
-- The GitHub cards show current **public repositories**, not a contribution heatmap. A heatmap is subject to GitHub account configuration and should only show genuine activity.
-- No contact form is hosted; contact links open GitHub, LinkedIn and email when configured.
-- This project is authored with Next.js 16.4.6. Update dependencies deliberately and retest before deploying; never blindly adopt an unverified package version.
-
-## Further guides
-
-- [PowerShell setup and Vercel deployment](docs/DEPLOYMENT.md)
-- [Meaningful contribution growth plan](docs/CONTRIBUTION_PLAN.md)
-- [Project evidence checklist](docs/EVIDENCE_CHECKLIST.md)
-- [Roadmap](ROADMAP.md)
-- [Security policy](SECURITY.md)
+The previous live portfolio at `my-portfolio-ruby-sigma-45hja9i8df.vercel.app` was not reachable through the available website inspection tool, so this project is a fresh design direction using the user's verified portfolio identity and requested style, **not a verified exact recreation**. A screenshot or original source would allow closer matching in a subsequent revision.

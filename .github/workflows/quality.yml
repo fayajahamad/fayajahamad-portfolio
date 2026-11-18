@@ -1,22 +1,19 @@
-name: Quality & build checks
+name: Portfolio quality
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
-permissions:
-  contents: read
 jobs:
-  quality:
+  check:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
-          cache-dependency-path: package-lock.json
-      - run: npm ci
+          cache: npm
+      - name: Install dependencies
+        run: if [ -f package-lock.json ]; then npm ci; else npm install; fi
       - run: npm run check
       - run: npm run build

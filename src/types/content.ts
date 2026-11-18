@@ -1,0 +1,30 @@
+export type ProjectCategory = "Network Security" | "Python" | "Infrastructure" | "Networking";
+export type EvidenceStatus = "Documented lab" | "Documentation in progress";
+export type Project = {
+  slug: string;
+  number: string;
+  name: string;
+  shortName: string;
+  category: ProjectCategory;
+  status: EvidenceStatus;
+  featured?: boolean;
+  summary: string;
+  technologies: readonly string[];
+  problem: string;
+  objectives: readonly string[];
+  architecture: readonly { label: string; detail: string }[];
+  implementation: readonly string[];
+  challenges: readonly string[];
+  validation: readonly string[];
+  learnings: readonly string[];
+  nextSteps: readonly string[];
+  repo?: string;
+  liveDemo?: string;
+  documentation?: string;
+  evidenceImage?: string;
+};
+export type SkillGroup = {
+  category: string;
+  description: string;
+  items: readonly { name: string; level: "Practical experience" | "Academic knowledge" | "Currently developing" }[];
+};

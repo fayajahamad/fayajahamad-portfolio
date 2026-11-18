@@ -1,20 +1,12 @@
-# Security policy
+# Security guidance
 
-This site publicly displays engineering portfolio content. It does not require privileged network access or collect visitor form submissions.
+This is a **public portfolio**. Never commit private keys, API tokens, real passwords, MFA recovery codes, sensitive IP addressing or unredacted service logs.
 
-## Never commit
+- `.env.local` and other local environment files are ignored; `.env.example` contains no secrets.
+- Verify every external link and screenshot before publishing.
+- An interactive access-control widget on the homepage is **illustrative**, not a live authentication system.
+- Contact details are direct links only; the website does not claim to send email without an email provider.
+- Basic security headers are set in `next.config.ts`. A restrictive CSP should be tested in production before enabling it; adding one blindly can break Next.js runtime features.
+- Keep the lockfile and dependencies updated, and review changes to workflow files.
 
-- Passwords, SMTP app passwords, API keys, access tokens or private keys
-- Keycloak MFA QR codes, OTP seeds or recovery codes
-- Production environment variables, session cookies or personal data
-- Unredacted user logs or screenshots containing sensitive data
-
-`.env*` is ignored by Git except `.env.example`.
-
-## Before publishing lab material
-
-Inspect both your **current files and Git history** for secrets. If a secret was committed previously, remove it from the published history using appropriate tooling **and rotate the secret**; deleting the file alone does not make it safe. Prefer isolated sample or redacted configurations.
-
-## Reporting
-
-Report a security issue privately to the maintainer using the contact channel listed on the GitHub profile. Avoid filing a public issue containing a live secret.
+If you discover an issue, open a private discussion with the repository owner rather than posting confidential details in a public issue.
