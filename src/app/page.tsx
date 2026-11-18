@@ -43,9 +43,8 @@ export default function Home() {
               <div className="v5-photo-header"><span>FAYAJ / PORTFOLIO</span><span>2026</span></div>
               <div className="v5-portrait-photo">
                 <Image src="/images/fayaj-professional-portrait.webp" alt="Portrait of Fayaj Ahamad wearing a light formal shirt and red tie" fill sizes="(max-width: 960px) 88vw, 480px" priority className="v5-portrait-image" />
-                <div className="v5-photo-corner" aria-hidden="true"><span>FA</span><span>01 / PORTRAIT</span></div>
               </div>
-              <div className="v5-photo-footer"><div><span>NETWORK ENGINEERING UNDERGRADUATE</span><strong>Fawsil Ameer Fayaj Ahamad</strong></div><span className="v5-photo-signature" aria-hidden="true">F / A</span></div>
+              <div className="v5-photo-footer"><div><span>NETWORK ENGINEERING UNDERGRADUATE</span><strong>Fawsil Ameer Fayaj Ahamad</strong></div></div>
             </div>
             <div className="v5-photo-annotation"><span className="v5-annotation-line"/> BUILDING WITH PURPOSE <span>↗</span></div>
           </div>
