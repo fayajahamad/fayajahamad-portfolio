@@ -40,7 +40,6 @@ export default function Home() {
           <div className="v5-portrait-composition">
             <div className="v5-portrait-outline" aria-hidden="true" />
             <div className="v5-portrait-card">
-              <div className="v5-photo-header"><span>FAYAJ / PORTFOLIO</span><span>2026</span></div>
               <div className="v5-portrait-photo">
                 <Image src="/images/fayaj-professional-portrait.webp" alt="Portrait of Fayaj Ahamad wearing a light formal shirt and red tie" fill sizes="(max-width: 960px) 88vw, 480px" priority className="v5-portrait-image" />
               </div>
