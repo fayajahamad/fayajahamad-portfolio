@@ -3,6 +3,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { profile } from "@/data/profile";
 import { siteUrl } from "@/lib/site";
+import { PremiumSiteMotion } from "@/components/motion/premium-site-motion";
 import "./globals.css";
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#FAF7F2" };
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body>
           <a className="skip-link" href="#main">Skip to main content</a>
+          <PremiumSiteMotion />
           <Header />
           <main id="main">{children}</main>
           <Footer />

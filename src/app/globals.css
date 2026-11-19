@@ -2084,3 +2084,61 @@ body{font-size:15px}
     color: #704E39;
     border-color: #E7D5BE;
 }
+
+/* FAYAJ_M7_PREMIUM_MOTION_START
+   Site-wide presentational motion only. Does not change dimensions, grids,
+   typography, copy, colors or routes. Existing M1-M6 animations remain. */
+.pm-site-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 150;
+  pointer-events: none;
+  transform-origin: 0% 50%;
+  background: linear-gradient(90deg, #8D6F57 0%, #D9B061 50%, #F1D9A4 100%);
+  box-shadow: 0 1px 7px rgba(63, 13, 12, .21);
+}
+
+.motion-home-hero .pm-hero-light {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    380px circle at var(--pm-pointer-x, 74%) var(--pm-pointer-y, 38%),
+    rgba(217,176,97,.21), rgba(217,176,97,.045) 55%, transparent 85%
+  );
+}
+.motion-home-hero .v4-hero-grid,
+.motion-home-hero .v4-hero-bottom { position: relative; z-index: 1; }
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .motion-home-hero .v5-portrait-composition {
+    transform: perspective(1300px)
+      rotateX(var(--pm-rotate-x, 0deg))
+      rotateY(var(--pm-rotate-y, 0deg));
+    transform-style: preserve-3d;
+    transition: transform 340ms cubic-bezier(.22, 1, .36, 1);
+  }
+  .motion-home-hero .v5-portrait-outline {
+    transition: border-color 300ms ease, opacity 300ms ease;
+  }
+  .motion-home-hero .v5-portrait-composition:hover .v5-portrait-outline {
+    border-color: #D9B061;
+    opacity: 1;
+  }
+}
+
+/* Honor accessibility: never move the portrait in reduced-motion mode. */
+@media (prefers-reduced-motion: reduce) {
+  .motion-home-hero .v5-portrait-composition {
+    transform: none !important;
+    transition: none !important;
+  }
+  .motion-home-hero .pm-hero-light { display: none; }
+  .pm-site-progress { box-shadow: none; }
+}
+/* FAYAJ_M7_PREMIUM_MOTION_END */
+
