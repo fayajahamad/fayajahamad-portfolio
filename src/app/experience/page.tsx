@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+
+
 import { ExperienceHighlights } from "@/components/sections/experience-highlights";
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export default function ExperiencePage() {
     </section>
     <section className="section-shell v6-experience-section bordered-top">
       <div className="container-wide"><ExperienceHighlights />
-        <div className="v6-evidence-note"><p>Roles and dates reflect my stated experience. Detailed responsibilities, work samples and references can be added once verified.</p><Link className="v4-inline-link" href="/contact">Get in touch <ArrowUpRight size={17}/></Link></div>
+        
       </div>
     </section>
   </>;
