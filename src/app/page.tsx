@@ -1,18 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight, ArrowDownRight, Github, Linkedin, Mail, MapPin, GraduationCap, Network, Terminal, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ArrowDownRight, Github, Linkedin, Mail, MapPin, GraduationCap, Network, Terminal, ShieldCheck } from "lucide-react";
 import { profile } from "@/data/profile";
 import { featuredProjects } from "@/data/projects";
 import { skillGroups } from "@/data/skills";
 import { ProjectCard } from "@/components/projects/project-card";
 import { ExperienceHighlights } from "@/components/sections/experience-highlights";
-import { AccessDemo } from "@/components/sections/access-demo";
+
 import { isVerifiedExternalLink } from "@/lib/site";
 
 const focusAreas = [
-  { number: "01", icon: Terminal, name: "Python & automation", description: "Small, dependable tools for monitoring, analysis and repeatable engineering tasks.", detail: "PYTHON / SCRIPTING" },
+  { number: "01", icon: Terminal, name: "Python & automation", description: "Developing Python-based tools for network monitoring, data analysis, and automating repetitive engineering tasks.", detail: "PYTHON / SCRIPTING" },
   { number: "02", icon: Network, name: "Network infrastructure", description: "Routing, segmentation, VoIP and the practical work of keeping systems connected.", detail: "TCP/IP / INFRASTRUCTURE" },
-  { number: "03", icon: ShieldCheck, name: "Security engineering", description: "Identity-aware access, firewall policy and observable, least-privilege systems.", detail: "ZERO TRUST / DEFENSE" },
+  { number: "03", icon: ShieldCheck, name: "Security engineering", description: "Designing and testing identity-based access controls, firewall policies, and least-privilege security principles through practical network security labs.", detail: "ZERO TRUST / DEFENSE" },
 ] as const;
 
 export default function Home() {
@@ -79,13 +79,6 @@ export default function Home() {
       <div className="container-wide">
         <div className="v4-section-head v4-section-head-compact"><div><h2>Software thinking.<br/><span>Infrastructure mindset.</span></h2></div></div>
         <div className="v4-focus-grid">{focusAreas.map(item => <article className="v4-focus-card" key={item.number}><div className="v4-focus-top"><span>{item.number} / 03</span><item.icon size={22} strokeWidth={1.7}/></div><h3>{item.name}</h3><p>{item.description}</p><small>{item.detail}</small></article>)}</div>
-      </div>
-    </section>
-
-    <section className="section-shell v4-lab-section">
-      <div className="container-wide v4-lab-grid">
-        <div className="v4-lab-copy"><p className="v4-section-index">04 <span>/</span> INTERACTIVE LAB</p><h2>See the policy.<br/><span>Understand the decision.</span></h2><p>One of my ongoing areas of study is identity-based application security. Explore two illustrative access decisions modeled on a controlled Zero Trust lab.</p><ul className="v4-lab-points"><li><CheckCircle2 size={16}/> Authentication and authorization are different checks</li><li><CheckCircle2 size={16}/> A valid login does not guarantee resource access</li><li><CheckCircle2 size={16}/> Scenarios are illustrative, not live telemetry</li></ul><Link href="/projects/zero-trust-enterprise" className="v4-inline-link">Read the architecture breakdown <ArrowUpRight size={17}/></Link></div>
-        <div className="v4-lab-demo"><AccessDemo /></div>
       </div>
     </section>
 
