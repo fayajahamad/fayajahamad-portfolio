@@ -2035,3 +2035,52 @@ body{font-size:15px}
   .m5-contact-section .contact-method { transform: none !important; }
 }
 /* FAYAJ_M5_END */
+
+
+/* FAYAJ_EXPERIENCE_MATCH_LIGHT */
+
+/* Match both Experience cards */
+.m4-experience-section .v6-credential-panel:nth-child(2) {
+    background: #FFFBF5;
+    color: #3F0D0C;
+    border: 1px solid #DDC6A9;
+    border-top: 5px solid #BD9960;
+}
+
+.m4-experience-section .v6-credential-panel:nth-child(2) .v6-credential-icon {
+    background: #EEDAB9;
+    color: #51231C;
+}
+
+.m4-experience-section .v6-credential-panel:nth-child(2) .v6-overline,
+.m4-experience-section .v6-credential-panel:nth-child(2) .v6-item-meta {
+    color: #8D6F57;
+}
+
+.m4-experience-section .v6-credential-panel:nth-child(2) .v6-credential-heading h3,
+.m4-experience-section .v6-credential-panel:nth-child(2) .v6-credential-item h4 {
+    color: #3F0D0C;
+}
+
+.m4-experience-section .v6-credential-panel:nth-child(2) .v6-role {
+    color: #6D4935;
+}
+
+.m4-experience-section .v6-credential-panel:nth-child(2) .v6-note {
+    color: #836C5D;
+}
+
+.m4-experience-section .v6-credential-panel:nth-child(2) .v6-credential-item {
+    border-left-color: #DCC6A7;
+}
+
+.m4-experience-section .v6-credential-panel:nth-child(2) .v6-credential-item::before {
+    background: #B78C52;
+    box-shadow: 0 0 0 5px #FFFBF5;
+}
+
+.m4-experience-section .v6-credential-panel:nth-child(2) .v6-item-meta span {
+    background: #F3E8D8;
+    color: #704E39;
+    border-color: #E7D5BE;
+}
