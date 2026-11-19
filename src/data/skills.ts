@@ -28,6 +28,6 @@ export const skillGroups: readonly SkillGroup[] = [
     { name: "VirtualBox & Docker", level: "Practical experience" },
     { name: "Git, GitHub & VS Code", level: "Practical experience" },
     { name: "Grafana & Loki", level: "Practical experience" },
-    { name: "AWS Cloud Infrastructure Fundamentals", level: "Currently developing" },
+    { name: "AWS Fundamentals", level: "Currently developing" },
   ] },
 ];
