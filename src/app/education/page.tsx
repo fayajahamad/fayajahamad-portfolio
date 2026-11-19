@@ -13,7 +13,7 @@ export default function EducationPage() {
   return (
     <>
       <section className="page-intro container-wide">
-        <span className="eyebrow"><span className="eyebrow-dot" />EDUCATION / 05</span>
+        
         <h1>Solid foundations.<br /><span>Applied curiosity.</span></h1>
         <p>My academic journey provides the fundamentals I use and test in practical networking, security and software projects.</p>
       </section>
