@@ -33,6 +33,33 @@ export default function EducationPage() {
               <Link href="/projects" className="text-link">See how I apply these foundations <ArrowUpRight size={17} /></Link>
             </div>
           </div>
+          <div className="additional-education" aria-label="Additional education and professional registration">
+            <article className="additional-education-item">
+              <span className="additional-education-number">02</span>
+              <div>
+                <span className="section-label">PROFESSIONAL REGISTRATION</span>
+                <h3>Registered Apprentice Pharmacist</h3>
+                <p>Sri Lanka Medical Council</p>
+              </div>
+            </article>
+
+            <article className="additional-education-item">
+              <span className="additional-education-number">03</span>
+              <div>
+                <span className="section-label">SECONDARY EDUCATION</span>
+                <h3>Zahira College, Colombo</h3>
+              </div>
+            </article>
+
+            <article className="additional-education-item">
+              <span className="additional-education-number">04</span>
+              <div>
+                <span className="section-label">PRIMARY EDUCATION</span>
+                <h3>Oxford International College</h3>
+              </div>
+            </article>
+          </div>
+
           {certifications.length > 0 && (
             <div className="certification-panel">
               <h2>Certifications</h2>
