@@ -31,7 +31,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     description: profile.role,
   };
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body>
           <a className="skip-link" href="#main">Skip to main content</a>
           <PremiumSiteMotion />
