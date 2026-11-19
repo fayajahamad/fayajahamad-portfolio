@@ -5,7 +5,6 @@ import { profile } from "@/data/profile";
 
 import { skillGroups } from "@/data/skills";
 
-import { ExperienceHighlights } from "@/components/sections/experience-highlights";
 
 import { isVerifiedExternalLink } from "@/lib/site";
 
@@ -61,7 +60,7 @@ export default function Home() {
           <div><h2>Real-world experience.<br/><span>Community involvement.</span></h2></div>
           <div className="v4-section-aside"><Link href="/experience" className="v4-inline-link">View experience and involvement <ArrowUpRight size={17}/></Link></div>
         </div>
-        <ExperienceHighlights />
+        
       </div>
     </section>
 
@@ -73,7 +72,7 @@ export default function Home() {
     </section>
 
     <section className="section-shell v4-toolkit-section">
-      <div className="container-wide"><div className="v4-section-head v4-section-head-compact"><div><p className="v4-section-index">05 <span>/</span> TECHNICAL TOOLKIT</p><h2>Tools, protocols<br/><span>& practical foundations.</span></h2></div><Link href="/skills" className="v4-inline-link">View skill breakdown <ArrowUpRight size={17}/></Link></div>
+      <div className="container-wide"><div className="v4-section-head v4-section-head-compact"><div><h2>Tools, protocols<br/><span>& practical foundations.</span></h2></div><Link href="/skills" className="v4-inline-link">View skill breakdown <ArrowUpRight size={17}/></Link></div>
       <div className="v4-toolkit-grid">{skillGroups.slice(0,4).map((group, index)=><article key={group.category} className="v4-toolkit-card"><span>0{index+1} / CAPABILITY</span><h3>{group.category}</h3><p>{group.description}</p><div>{group.items.slice(0,4).map(skill=><span key={skill.name}>{skill.name}</span>)}</div></article>)}</div>
       </div>
     </section>

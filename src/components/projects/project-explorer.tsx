@@ -9,7 +9,7 @@ import type { ProjectCategory } from "@/types/content";
 
 type Filter = "All work" | ProjectCategory;
 const filters: readonly Filter[] = ["All work", "Network Security", "Python", "Infrastructure"];
-const heroSlug = "zero-trust-enterprise";
+
 
 export function ProjectExplorer() {
   const [filter, setFilter] = useState<Filter>("All work");
@@ -20,18 +20,15 @@ export function ProjectExplorer() {
   useEffect(() => {
     explorerRef.current?.setAttribute("data-hydrated", "true");
   }, []);
-  const isDefaultView = filter === "All work" && search.trim() === "";
+
 
   const filtered = useMemo(() => projects.filter((p) =>
     (filter === "All work" || p.category === filter) &&
     `${p.name} ${p.summary} ${p.technologies.join(" ")}`.toLowerCase().includes(search.trim().toLowerCase())
   ), [filter, search]);
 
-  // The Zero Trust study leads only in the unfiltered gallery; data and wording remain intact.
-  const displayed = useMemo(() => isDefaultView
-    ? [...filtered].sort((a, b) => Number(b.slug === heroSlug) - Number(a.slug === heroSlug))
-    : filtered
-  , [filtered, isDefaultView]);
+  // Retain the original project order 01-05, including filtered views.
+  const displayed = filtered;
 
   return (
     <div ref={explorerRef} className="project-explorer m3-project-explorer">
@@ -61,13 +58,13 @@ export function ProjectExplorer() {
       </div>
       <p className="result-count" aria-live="polite">Showing {filtered.length} of {projects.length} projects</p>
       {filtered.length ? (
-        <div className={`project-grid m3-project-grid${isDefaultView ? " m3-gallery-default" : ""}`}>
+        <div className="project-grid m3-project-grid">
           <AnimatePresence initial={false} mode="popLayout">
             {displayed.map((project) => (
               <motion.div
                 key={project.slug}
                 layout={!prefersReducedMotion}
-                className={`m3-project-item${isDefaultView && project.slug === heroSlug ? " m3-project-feature" : ""}`}
+                className="m3-project-item"
                 initial={prefersReducedMotion ? false : { opacity: 0, y: 18, scale: 0.985 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={prefersReducedMotion ? undefined : { opacity: 0, y: -10, scale: 0.985 }}
