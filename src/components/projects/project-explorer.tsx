@@ -7,7 +7,7 @@ import { projects } from "@/data/projects";
 import type { ProjectCategory } from "@/types/content";
 
 type Filter = "All work" | ProjectCategory;
-const filters: readonly Filter[] = ["All work", "Network Security", "Python", "Infrastructure", "Networking"];
+const filters: readonly Filter[] = ["All work", "Network Security", "Python", "Infrastructure"];
 
 export function ProjectExplorer() {
   const [filter,setFilter] = useState<Filter>("All work");

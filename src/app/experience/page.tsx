@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ExperiencePage() {
   return <>
     <section className="page-intro container-wide v6-page-intro">
-      <span className="eyebrow"><span className="eyebrow-dot"/>EXPERIENCE & INVOLVEMENT</span>
+      
       <h1>Learning through work.<br/><span>Growing through people.</span></h1>
       <p>Alongside my studies and technical projects, I have gained experience through part-time and contract roles and participated in university societies.</p>
     </section>
