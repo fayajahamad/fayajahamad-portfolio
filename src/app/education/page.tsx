@@ -12,12 +12,12 @@ export const metadata: Metadata = {
 export default function EducationPage() {
   return (
     <>
-      <section className="page-intro container-wide">
+      <section className="page-intro container-wide m4-page-intro m4-education-intro">
         
         <h1>Solid foundations.<br /><span>Applied curiosity.</span></h1>
         <p>My academic journey provides the fundamentals I use and test in practical networking, security and software projects.</p>
       </section>
-      <section className="section-shell bordered-top">
+      <section className="section-shell bordered-top m4-education-section">
         <div className="container-wide">
           <div className="education-panel">
             <div className="education-icon"><GraduationCap size={30} /></div>

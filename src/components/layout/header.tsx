@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 
 const links = [
@@ -16,8 +16,13 @@ const links = [
 export function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  // A deterministic signal for browser tests: handlers are attached after hydration.
+  const headerRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    headerRef.current?.setAttribute("data-hydrated", "true");
+  }, []);
   const active = (href: string) => href === "/" ? pathname === href : pathname.startsWith(href);
-  return <header className="site-header v4-site-header">
+  return <header ref={headerRef} className="site-header v4-site-header">
     <div className="header-shell container-wide">
       <Link href="/" className="wordmark v4-wordmark" onClick={() => setMenuOpen(false)} aria-label="Fayaj Ahamad, home">
         <span className="v4-logo-square">F<span>.</span></span>

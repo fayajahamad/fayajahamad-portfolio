@@ -1,12 +1,23 @@
+"use client";
+
 import Link from "next/link";
+import type { PointerEvent } from "react";
 import { ArrowUpRight, Github } from "lucide-react";
 import { ProjectVisual } from "@/components/projects/project-visual";
 import type { Project } from "@/types/content";
 import { isVerifiedExternalLink } from "@/lib/site";
 
+function updateSpotlight(event: PointerEvent<HTMLElement>) {
+  if (event.pointerType !== "mouse") return;
+  const el = event.currentTarget;
+  const bounds = el.getBoundingClientRect();
+  el.style.setProperty("--m3-x", `${event.clientX - bounds.left}px`);
+  el.style.setProperty("--m3-y", `${event.clientY - bounds.top}px`);
+}
+
 export function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="project-card">
+    <article className="project-card m3-project-card" onPointerMove={updateSpotlight}>
       <Link href={`/projects/${project.slug}`} className="project-cover" aria-label={`Read case study: ${project.name}`}>
         <div className="project-cover-head"><span>PROJECT {project.number}</span><span>{project.category}</span></div>
         <ProjectVisual slug={project.slug}/>
