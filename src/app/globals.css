@@ -1198,3 +1198,158 @@ body{font-size:15px}
 .v4-focus-top > span:first-child {
     display: none;
 }
+
+
+
+/* Homepage entrance — motion milestone M1 (content and layout unchanged).
+   Accessible by default: only transforms and opacity; reduced-motion turns all off. */
+:root {
+  --home-motion-ease: cubic-bezier(.22, 1, .36, 1);
+  --home-motion-fast: 560ms;
+  --home-motion-slow: 820ms;
+}
+
+@keyframes home-content-enter {
+  from { opacity: 0; transform: translate3d(0, 15px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes home-portrait-enter {
+  from { opacity: 0; transform: translate3d(14px, 22px, 0) scale(.982); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes home-image-settle {
+  from { transform: scale(1.035); }
+  to { transform: scale(1); }
+}
+
+.motion-home-hero .v4-hero-copy > :is(.v4-availability, .v4-intro, h1, .v4-tagline, .v4-description, .v4-hero-actions, .v4-social-links) {
+  animation: home-content-enter var(--home-motion-fast) var(--home-motion-ease) both;
+}
+.motion-home-hero .v4-hero-copy > .v4-availability { animation-delay: 50ms; }
+.motion-home-hero .v4-hero-copy > .v4-intro { animation-delay: 130ms; }
+.motion-home-hero .v4-hero-copy > h1 { animation-delay: 200ms; animation-duration: 720ms; }
+.motion-home-hero .v4-hero-copy > .v4-tagline { animation-delay: 330ms; }
+.motion-home-hero .v4-hero-copy > .v4-description { animation-delay: 410ms; }
+.motion-home-hero .v4-hero-copy > .v4-hero-actions { animation-delay: 490ms; }
+.motion-home-hero .v4-hero-copy > .v4-social-links { animation-delay: 570ms; }
+.motion-home-hero .v4-hero-visual {
+  animation: home-portrait-enter var(--home-motion-slow) var(--home-motion-ease) 230ms both;
+}
+.motion-home-hero .v5-portrait-image {
+  animation: home-image-settle 1200ms var(--home-motion-ease) 250ms both;
+}
+.motion-home-hero .v4-hero-bottom {
+  animation: home-content-enter 500ms var(--home-motion-ease) 660ms both;
+}
+
+/* Fine-pointer hover gives light feedback without changing the image itself. */
+@media (hover: hover) and (pointer: fine) {
+  .motion-home-hero .v5-portrait-card {
+    transition: transform 280ms var(--home-motion-ease), box-shadow 280ms ease;
+  }
+  .motion-home-hero .v5-portrait-composition:hover .v5-portrait-card {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 62px rgba(61,27,17,.16);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-home-hero .v4-hero-copy > :is(.v4-availability, .v4-intro, h1, .v4-tagline, .v4-description, .v4-hero-actions, .v4-social-links),
+  .motion-home-hero .v4-hero-visual,
+  .motion-home-hero .v5-portrait-image,
+  .motion-home-hero .v4-hero-bottom,
+  .motion-home-hero .v5-portrait-card {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
+/* M2: navigation, button and mobile-menu microinteractions.
+   Append-only enhancement. No page content or existing layout is changed. */
+:root {
+  --m2-ease: cubic-bezier(.22, 1, .36, 1);
+  --m2-feedback: 240ms;
+}
+
+/* Underline guides desktop navigation without changing link hit areas. */
+.v4-site-header .desktop-nav .nav-link {
+  transition: color var(--m2-feedback) ease, background-color var(--m2-feedback) ease;
+}
+.v4-site-header .desktop-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 3px;
+  height: 2px;
+  background: #D9B061;
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 300ms var(--m2-ease);
+  pointer-events: none;
+}
+.v4-site-header .desktop-nav .nav-link:is(:hover, :focus-visible, .active)::after {
+  transform: scaleX(1);
+}
+.v4-site-header .desktop-nav .nav-link:hover {
+  background-color: rgba(217, 176, 97, .11);
+}
+
+/* Feedback feels tactile but uses small, stable transforms. */
+.v4-site-header .header-contact,
+.v4-button,
+.v4-inline-link {
+  transition:
+    transform var(--m2-feedback) var(--m2-ease),
+    box-shadow var(--m2-feedback) ease,
+    color var(--m2-feedback) ease,
+    background-color var(--m2-feedback) ease,
+    border-color var(--m2-feedback) ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .v4-site-header .header-contact:hover { transform: translateY(-2px); }
+  .v4-button:hover { transform: translateY(-3px); }
+  .v4-inline-link:hover { transform: translateX(3px); }
+}
+.v4-site-header .header-contact:active,
+.v4-button:active { transform: translateY(0) scale(.985); }
+
+/* Clear keyboard feedback, including for links that are styled as buttons. */
+.v4-site-header a:focus-visible,
+.v4-site-header button:focus-visible,
+.v4-button:focus-visible,
+.v4-inline-link:focus-visible {
+  outline: 2px solid #D9B061;
+  outline-offset: 4px;
+}
+
+/* The menu enters after opening; native links and scrolling remain unchanged. */
+@keyframes m2-mobile-menu-enter {
+  from { opacity: 0; transform: translateY(-9px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 900px) {
+  .v4-site-header .mobile-nav {
+    animation: m2-mobile-menu-enter 280ms var(--m2-ease) both;
+    transform-origin: top;
+  }
+  .v4-site-header .mobile-nav a {
+    transition: background-color var(--m2-feedback) ease, color var(--m2-feedback) ease;
+  }
+  .v4-site-header .mobile-nav a:is(:hover, :focus-visible) {
+    background-color: rgba(217, 176, 97, .10);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v4-site-header .mobile-nav { animation: none !important; }
+  .v4-site-header .desktop-nav .nav-link,
+  .v4-site-header .desktop-nav .nav-link::after,
+  .v4-site-header .mobile-nav a,
+  .v4-site-header .header-contact,
+  .v4-button,
+  .v4-inline-link { transition: none !important; }
+}

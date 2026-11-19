@@ -17,7 +17,7 @@ const focusAreas = [
 
 export default function Home() {
   return <>
-    <section className="v4-hero" aria-labelledby="v4-main-headline">
+    <section className="v4-hero motion-home-hero" aria-labelledby="v4-main-headline">
       <div className="v4-noise" aria-hidden="true" />
       <div className="container-wide v4-hero-grid">
         <div className="v4-hero-copy">
@@ -51,7 +51,7 @@ export default function Home() {
       <div className="container-wide v4-hero-bottom">
         <div><GraduationCap size={18}/><span>Third-year undergraduate</span></div>
         <div><MapPin size={18}/><span>NSBM Green University, Sri Lanka</span></div>
-        <a href="/projects">Browse projects <ArrowDownRight size={16}/></a>
+        <Link href="/projects">Browse projects <ArrowDownRight size={16}/></Link>
       </div>
     </section>
 
