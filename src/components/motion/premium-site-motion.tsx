@@ -7,10 +7,10 @@ import { motion, useReducedMotion, useScroll, useSpring } from "motion/react";
 // Only presentational elements are enhanced. No content, controls, or
 // navigation destinations are modified.
 const REVEAL_SELECTOR = [
-  ".v4-focus-section .v4-section-head",
-  ".v4-focus-section .v4-focus-card",
-  ".v4-toolkit-section .v4-section-head",
-  ".v4-toolkit-section .v4-toolkit-card",
+
+
+
+
   ".v4-contact-band .v4-contact-inner",
   ".page-intro.m3-projects-intro",
   ".m5-about-section .about-prose",
