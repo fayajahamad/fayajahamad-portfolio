@@ -2,9 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight, ArrowDownRight, Github, Linkedin, Mail, MapPin, GraduationCap, Network, Terminal, ShieldCheck } from "lucide-react";
 import { profile } from "@/data/profile";
-import { featuredProjects } from "@/data/projects";
+
 import { skillGroups } from "@/data/skills";
-import { ProjectCard } from "@/components/projects/project-card";
+
 import { ExperienceHighlights } from "@/components/sections/experience-highlights";
 
 import { isVerifiedExternalLink } from "@/lib/site";
@@ -51,17 +51,7 @@ export default function Home() {
       <div className="container-wide v4-hero-bottom">
         <div><GraduationCap size={18}/><span>Third-year undergraduate</span></div>
         <div><MapPin size={18}/><span>NSBM Green University, Sri Lanka</span></div>
-        <a href="#selected-work">Scroll to explore <ArrowDownRight size={16}/></a>
-      </div>
-    </section>
-
-    <section className="section-shell v4-selected-work" id="selected-work">
-      <div className="container-wide">
-        <div className="v4-section-head">
-          <div><h2>Work that speaks<br/><span>through the details.</span></h2></div>
-          <div className="v4-section-aside"><Link href="/projects" className="v4-inline-link">View all projects <ArrowUpRight size={17}/></Link></div>
-        </div>
-        <div className="project-grid featured-project-grid">{featuredProjects.map(project => <ProjectCard key={project.slug} project={project}/>)}</div>
+        <a href="/projects">Browse projects <ArrowDownRight size={16}/></a>
       </div>
     </section>
 
